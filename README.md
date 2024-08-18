@@ -151,12 +151,33 @@ También puede utilizar el archivo `docker-compose.yml`para levantar todos los m
 datos con un solo comando. Esto simplifica enormemente el proceso de puesta en marcha del proyecto, ya 
 que no es necesario iniciar cada microservicio y base de datos individualmente.
 
-Para levantar todo el proyecto junto con las bases de datos, siga estos pasos:
+Se ha creado un script para automatizar el proceso de generación de artefactos y construcción de imágenes 
+Docker para cada microservicio. Este script utiliza Maven y Gradle para compilar los microservicios y Docker 
+para construir las imágenes.
+
+El script se encuentra en el directorio `scripts` con el nombre `build-and-deploy.sh`. 
+
+Para ejecutar el script y levantar todo el proyecto junto con las bases de datos, siga estos pasos:
 
 ```bash
 
-# Entra en el directorio del proyecto completo
+# Entra en el directorio del proyecto
 cd springcloud-demo-mr
+
+# Navega al directorio de scripts
+cd scripts
+
+# Otorga permisos de ejecución al script
+chmod +x build-and-deploy.sh
+
+# Ejecuta el script
+./build-and-deploy.sh
+
+# Navega al directorio de deployment
+cd deployment
+
+# Vuelve al directorio raíz del proyecto
+cd ..
 
 # Ejecuta Docker Compose
 docker-compose up
